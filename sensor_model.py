@@ -2,8 +2,7 @@ from firebase_admin import firestore
 from datetime import datetime
 
 class SensorModel:
-    def __init__(self, value, date, humidity, temperature, co2, co, pm25):
-        self.value = value
+    def __init__(self, date, humidity, temperature, co2, co, pm25):
         self.date = date
         self.humidity = humidity
         self.temperature = temperature
@@ -14,7 +13,6 @@ class SensorModel:
     def to_dict(self):
         date = datetime.strptime(self.date, '%Y-%m-%d %H:%M:%S')
         return {
-            'value': self.value,
             'date': date,
             'humidity': self.humidity,
             'temperature': self.temperature,
