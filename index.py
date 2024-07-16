@@ -18,8 +18,12 @@ def hello_world():
 def routeSensors():
         value = request.json.get('value')
         date = request.json.get('date')
-        type = request.json.get('type')
-        data = SensorModel(value, date, type)
+        humidity = request.json.get('humidity')
+        temperature = request.json.get('temperature')
+        co2 = request.json.get('co2')
+        co = request.json.get('co')
+        pm25 = request.json.get('pm25')
+        data = SensorModel(value, date, humidity, temperature, co2, co, pm25)
         sensor_refs.add(data.to_dict())
         return sendResponse("success", data)
 
