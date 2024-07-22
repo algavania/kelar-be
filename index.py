@@ -3,6 +3,7 @@ from sensor_model import SensorModel
 from firebase_admin import credentials, firestore, initialize_app
 import air_quality
 import forecasting
+import json
 
 app = Flask(__name__)
 
@@ -53,10 +54,13 @@ def predict():
 @app.route("/api/forecast", methods=['GET'])
 def forecast():
     prediction = forecasting.load_models_and_predict()
+    json_str = prediction.to_json(orient='records')
+    
+    json_obj = json.loads(json_str)
 
     return jsonify({
         "status": "success",
-        "data": prediction
+        "data": json_obj
     })
 
 def sendResponse(status, data):
