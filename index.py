@@ -2,8 +2,6 @@ from flask import Flask, jsonify, request
 from sensor_model import SensorModel
 from firebase_admin import credentials, firestore, initialize_app
 import air_quality
-import forecasting
-import json
 
 app = Flask(__name__)
 
@@ -12,7 +10,6 @@ cred = credentials.Certificate('key.json')
 default_app = initialize_app(cred)
 db = firestore.client()
 sensor_refs = db.collection('sensors')
-
 
 @app.route("/")
 def hello_world():
@@ -51,18 +48,6 @@ def predict():
         }
     })
     
-@app.route("/api/forecast", methods=['GET'])
-def forecast():
-    prediction = forecasting.load_models_and_predict()
-    json_str = prediction.to_json(orient='records')
-    
-    json_obj = json.loads(json_str)
-
-    return jsonify({
-        "status": "success",
-        "data": json_obj
-    })
-
 def sendResponse(status, data):
     if isinstance(data, list):
         data = [item.to_dict() for item in data]

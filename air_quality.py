@@ -1,5 +1,3 @@
-import joblib
-
 def calculate_aqi(concentration, breakpoints):
     for (ConcLow, ConcHigh, IndexLow, IndexHigh) in breakpoints:
         if ConcLow <= concentration <= ConcHigh:

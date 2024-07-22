@@ -1,4 +1,3 @@
-from firebase_admin import firestore
 from datetime import datetime
 
 class SensorModel:
