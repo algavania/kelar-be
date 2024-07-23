@@ -17,7 +17,7 @@ def hello_world():
     return "<p>Hello, World!</p>"
 
 @app.route("/api/sensors", methods=['POST'])
-def routeSensors():
+def route_sensors():
         date = request.json.get('date')
         humidity = request.json.get('humidity')
         temperature = request.json.get('temperature')
@@ -26,27 +26,8 @@ def routeSensors():
         pm25 = request.json.get('pm25')
         data = SensorModel(date, humidity, temperature, co2, co, pm25)
         sensor_refs.add(data.to_dict())
-        return sendResponse("success", data)
+        return send_response("success", data)
     
-
-@app.route("/api/sensors", methods=['DELETE'])
-def routeSensors():
-        date = request.json.get('date')
-        humidity = request.json.get('humidity')
-        temperature = request.json.get('temperature')
-        co2 = request.json.get('co2')
-        co = request.json.get('co')
-        pm25 = request.json.get('pm25')
-        data = SensorModel(date, humidity, temperature, co2, co, pm25)
-        sensor_refs.add(data.to_dict())
-        return jsonify({
-        "status": "success",
-        "data": {
-            "quality": quality,
-            "advice": advice
-        }
-    })
-
 
 
 @app.route("/api/predict", methods=['POST'])
@@ -80,7 +61,7 @@ def forecast():
         "data": advice,
     })
     
-def sendResponse(status, data):
+def send_response(status, data):
     if isinstance(data, list):
         data = [item.to_dict() for item in data]
     else:
