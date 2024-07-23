@@ -27,6 +27,27 @@ def routeSensors():
         data = SensorModel(date, humidity, temperature, co2, co, pm25)
         sensor_refs.add(data.to_dict())
         return sendResponse("success", data)
+    
+
+@app.route("/api/sensors", methods=['DELETE'])
+def routeSensors():
+        date = request.json.get('date')
+        humidity = request.json.get('humidity')
+        temperature = request.json.get('temperature')
+        co2 = request.json.get('co2')
+        co = request.json.get('co')
+        pm25 = request.json.get('pm25')
+        data = SensorModel(date, humidity, temperature, co2, co, pm25)
+        sensor_refs.add(data.to_dict())
+        return jsonify({
+        "status": "success",
+        "data": {
+            "quality": quality,
+            "advice": advice
+        }
+    })
+
+
 
 @app.route("/api/predict", methods=['POST'])
 def predict():
