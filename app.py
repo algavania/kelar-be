@@ -3,7 +3,10 @@ from sensor_model import SensorModel
 from firebase_admin import credentials, firestore, initialize_app
 import air_quality
 import forecasting
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 app = Flask(__name__)
 
 # Firebase Initialization
@@ -70,3 +73,7 @@ def send_response(status, data):
         "status": status,
         "data": data
     })
+    
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=os.getenv("PORT")
+)
