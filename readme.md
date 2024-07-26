@@ -11,6 +11,7 @@ Pada project ini, kami menggunakan Firebase Firestore sebagai database. Ada bebe
 
 ## Installation
 - Clone project ini.
-- Buka project dengan text editor spepe Visual Studio Code.
+- Buka project dengan text editor seperti Visual Studio Code.
+- Generate `key.json` dari Firebase dan tambahkan file tersebut ke root project.
 - Buka terminal dan jalankan `python app.py`
 - Project berhasil dijalankan.
